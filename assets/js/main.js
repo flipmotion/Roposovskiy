@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$('a.smooth').click(function(){
 		$('html, body').animate({
-			scrollTop: $( $.attr(this, 'href') ).offset().top 
+			scrollTop: $( $.attr(this, 'href') ).offset().top -50
 		}, 1000);
 		return false;
 	});
@@ -83,26 +83,89 @@ $(document).ready(function() {
 	ymaps.ready(init);
 	function init () {
 		myMap = new ymaps.Map('map', {
-			center: [55.9261257, 37.7689685],
+			center: [55.925949, 37.767771],
 			zoom: 16,
 			controls: []
 		}),
 		myMap.behaviors
 			.disable(['rightMouseButtonMagnifier' , 'scrollZoom'])
-			myPlacemark = new ymaps.Placemark([55.9261257, 37.7689685], {
+			myPlacemark = new ymaps.Placemark([55.925949, 37.767771], {
 				hintContent: [
 				''
-			].join(''),
-				balloonContentBody: [
-				'1'
 			].join('')
 			}, {
 				iconLayout: 'default#image',
-				iconImageHref: 'assets/img/pick-map.png',
-				iconImageSize: [102, 91],
+				iconImageHref: 'assets/img/main-pin.png',
+				iconImageSize: [97, 101],
+				iconImageOffset: [-38, -101]
+			});
+			myPlacemark2 = new ymaps.Placemark([55.926855, 37.778221], {
+				hintContent: [
+				''
+			].join('')
+			}, {
+				iconLayout: 'default#image',
+				iconImageHref: 'assets/img/pin1.png',
+				iconImageSize: [291, 171],
+				iconImageOffset: [-38, -91]
+			});
+			myPlacemark3 = new ymaps.Placemark([55.924749, 37.762947], {
+				hintContent: [
+				''
+			].join('')
+			}, {
+				iconLayout: 'default#image',
+				iconImageHref: 'assets/img/pin2.png',
+				iconImageSize: [228, 177],
+				iconImageOffset: [-38, -91]
+			});
+			myPlacemark4 = new ymaps.Placemark([55.9261257, 37.7689685], {
+				hintContent: [
+				''
+			].join('')
+			}, {
+				iconLayout: 'default#image',
+				iconImageHref: 'assets/img/pin3.png',
+				iconImageSize: [291, 171],
+				iconImageOffset: [-38, -91]
+			});
+			myPlacemark5 = new ymaps.Placemark([55.9261257, 37.7689685], {
+				hintContent: [
+				''
+			].join('')
+			}, {
+				iconLayout: 'default#image',
+				iconImageHref: 'assets/img/pin4.png',
+				iconImageSize: [291, 171],
+				iconImageOffset: [-38, -91]
+			});
+			myPlacemark6 = new ymaps.Placemark([55.9261257, 37.7689685], {
+				hintContent: [
+				''
+			].join('')
+			}, {
+				iconLayout: 'default#image',
+				iconImageHref: 'assets/img/pin5.png',
+				iconImageSize: [291, 171],
+				iconImageOffset: [-38, -91]
+			});
+			myPlacemark7 = new ymaps.Placemark([55.929489,37.778092], {
+				hintContent: [
+				''
+			].join('')
+			}, {
+				iconLayout: 'default#image',
+				iconImageHref: 'assets/img/pin6.png',
+				iconImageSize: [249, 201],
 				iconImageOffset: [-38, -91]
 			});
 		myMap.geoObjects.add(myPlacemark);
+		myMap.geoObjects.add(myPlacemark2);
+		myMap.geoObjects.add(myPlacemark3);
+		myMap.geoObjects.add(myPlacemark4);
+		myMap.geoObjects.add(myPlacemark5);
+		myMap.geoObjects.add(myPlacemark6);
+		myMap.geoObjects.add(myPlacemark7);
 	}
 	var myMap2;
 	ymaps.ready(init2);
@@ -112,6 +175,7 @@ $(document).ready(function() {
 			zoom: 16,
 			controls: []
 		}),
+		
 		myMap2.behaviors
 			.disable(['rightMouseButtonMagnifier' , 'scrollZoom'])
 			myPlacemark = new ymaps.Placemark([55.9261257, 37.7689685], {
@@ -128,9 +192,24 @@ $(document).ready(function() {
 				iconImageOffset: [-38, -91]
 			});
 		myMap2.geoObjects.add(myPlacemark);
+		
 	}
 	
 });
+function send(){
+	var form = $('[data-form="send"]');
+	form.ajaxForm(function() {
+		
+		$('#call').modal('hide');
+		$('#call2').modal('hide');
+		$('#call3').modal('hide');
+		$('#call4').modal('hide');
+		$('#call5').modal('hide');
+		$('#call6').modal('hide');
+		$('#thx').modal('show');
+		$(form).resetForm();
+	});
+}
 function menuTop(){
 	if ( $(this).scrollTop() > 10 && !$('.header').hasClass('open') ) {
 		$('.header').addClass('fix-header');
