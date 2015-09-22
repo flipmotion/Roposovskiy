@@ -41,6 +41,17 @@ $(document).ready(function() {
 	});
 	/*validation startn*/
 	var form = $('[data-form="send"]');
+	form.ajaxForm(function() {
+		
+		$('#call').modal('hide');
+		$('#call2').modal('hide');
+		$('#call3').modal('hide');
+		$('#call4').modal('hide');
+		$('#call5').modal('hide');
+		$('#call6').modal('hide');
+		$('#thx').modal('show');
+		$(form).resetForm();
+	});
 	$(form).validator().on('submit', function (e) {
 		if ($(this).hasClass('disabled')) {
 			// handle the invalid form...
