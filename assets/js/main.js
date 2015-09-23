@@ -41,6 +41,11 @@ $(document).ready(function() {
 	});
 	/*validation startn*/
 	var form = $('[data-form="send"]');
+
+	form.ajaxForm(function() {
+		window.location.href = "thx.html";
+	});
+
 	$(form).validator().on('submit', function (e) {
 		if ($(this).hasClass('disabled')) {
 			// handle the invalid form...
