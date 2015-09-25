@@ -41,11 +41,6 @@ $(document).ready(function() {
 	});
 	/*validation startn*/
 	var form = $('[data-form="send"]');
-
-	form.ajaxForm(function() {
-		window.location.href = "thx.html";
-	});
-
 	$(form).validator().on('submit', function (e) {
 		if ($(this).hasClass('disabled')) {
 			// handle the invalid form...
@@ -177,16 +172,78 @@ $(document).ready(function() {
 
 
 	function init2 () {
+		
+		var multiRoute = new ymaps.multiRouter.MultiRoute({
+	        referencePoints: [
+	            [55.9261257, 37.7689685],
+	            [55.88747278, 37.66152650]
+	           
+	        ],
+	        params: {
+	            routingMode: 'auto',
+	             results: 1
+	        }
+	    }, {
+	        // Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком.
+	        boundsAutoApply: true,
+	        routeStrokeWidth: 2,
+	        routeStrokeColor: "#4db86e",
+	        routeActiveStrokeWidth: 6,
+	        routeActiveStrokeColor: "#4db86e",
+	        wayPointFinishIconLayout: "default#image",
+	        wayPointFinishIconImageHref: "images/sokolniki.png",
+	        wayPointStartIconLayout: "default#image",
+	        wayPointStartIconImageHref: "images/sokolniki.png"
+	    });
+	    var multiRoute2 = new ymaps.multiRouter.MultiRoute({
+	        referencePoints: [
+	            [55.9261257, 37.7689685],
+	             [55.88247986, 37.72632867]
+	           
+	        ],
+	        params: {
+	            routingMode: 'auto',
+	             results: 1
+	        }
+	    }, {
+	        // Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком.
+	        boundsAutoApply: true,
+	        routeStrokeWidth: 2,
+	        routeStrokeColor: "#935aa3",
+	        routeActiveStrokeWidth: 6,
+	        routeActiveStrokeColor: "#935aa3",
+	        wayPointFinishIconLayout: "default#image",
+	        wayPointFinishIconImageHref: "images/sokolniki.png",
+	        wayPointStartIconLayout: "default#image",
+	        wayPointStartIconImageHref: "images/sokolniki.png"
+	    });
+    	var multiRoute3 = new ymaps.multiRouter.MultiRoute({
+	        referencePoints: [
+	            [55.93300201, 37.78322600],
+	            [55.75739894, 37.66084400]
+	           
+	        ],
+	        params: {
+	            routingMode: 'auto',
+	            results: 1
+	        }
+	    }, {
+	        // Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком.
+	        boundsAutoApply: true,
+	        routeStrokeWidth: 2,
+	        routeStrokeColor: "#2c92bb",
+	        routeActiveStrokeWidth: 6,
+	        routeActiveStrokeColor: "#2c92bb",
+	        wayPointFinishIconLayout: "default#image",
+	        wayPointFinishIconImageHref: "images/sokolniki.png",
+	        wayPointStartIconLayout: "default#image",
+	        wayPointStartIconImageHref: "images/sokolniki.png"
+	    });
 		myMap2 = new ymaps.Map('map2', {
 			center: [55.9261257, 37.7689685],
 			zoom: 15,
 			controls: []
 		}),
-		// router = new ymaps.Router(
-  //               [new ymaps.GeoPoint(37.61934642, 55.75089601), new ymaps.GeoPoint(37.45729808, 55.63920392)], [],
-  //               {viewAutoApply: true}
-  //       ),
-        // Добавляем на карту полный маршрут
 		myMap2.behaviors
 			.disable(['rightMouseButtonMagnifier' , 'scrollZoom'])
 			myPlacemark = new ymaps.Placemark([55.925949, 37.767771], {
@@ -200,69 +257,11 @@ $(document).ready(function() {
 				iconImageOffset: [-38, -101]
 			});
 		myMap2.geoObjects.add(myPlacemark);
-		//myMap2.addOverlay(router);
-
-
-		// var router = new YMaps.Router(
-  //               [new YMaps.GeoPoint(37.61934642, 55.75089601), new YMaps.GeoPoint(37.45729808, 55.63920392)], [],
-  //               {viewAutoApply: true}
-  //       );
-  //       myMap2.addOverlay(router); // Добавляем на карту полный маршрут
-
-  //       var router2 = new ymaps.Router(
-  //               [new ymaps.GeoPoint(37.61934642, 55.75089601), new ymaps.GeoPoint(37.37215404, 55.79115054)], [],
-  //               {viewAutoApply: true}
-  //       );
-  //       style = new ymaps.Style();//переменная для класс стилей
-  //       style.lineStyle = new ymaps.LineStyle(); // Задаем стиль линии
-  //       style.lineStyle.strokeWidth = 5; // Ширина линии
-  //       style.lineStyle.strokeColor = '30405080' //цвет линии
-  //       router2.setStyle(style);//рименяем стиль к конкретному маршруту
-  //       myMap2.addOverlay(router2);
-
-  //        var router3 = new YMaps.Router(
-  //               [new YMaps.GeoPoint(37.61934642, 55.75089601), new YMaps.GeoPoint(37.81984691, 55.68422956)], [],
-  //               {viewAutoApply: true}
-  //       );
-  //       map.addOverlay(router3);
+		myMap2.geoObjects.add(multiRoute);
+		myMap2.geoObjects.add(multiRoute2);
+		myMap2.geoObjects.add(multiRoute3);
+		
 	}
-
-
-
-	 // YMaps.jQuery(function () {
-  //       var map = new YMaps.Map(YMaps.jQuery("#map2")[0]);
-  //       map.setCenter(new YMaps.GeoPoint(37.71, 55.74), 10);
-
-
-
-  //       // первая тчока
-  //       var router = new YMaps.Router(
-  //               [new YMaps.GeoPoint(37.61934642, 55.75089601), new YMaps.GeoPoint(37.45729808, 55.63920392)], [],
-  //               {viewAutoApply: true}
-  //       );
-  //       map.addOverlay(router); // Добавляем на карту полный маршрут
-
-  //       // вторая тчока
-  //       var router2 = new YMaps.Router(
-  //               [new YMaps.GeoPoint(37.61934642, 55.75089601), new YMaps.GeoPoint(37.37215404, 55.79115054)], [],
-  //               {viewAutoApply: true}
-  //       );
-  //       style = new YMaps.Style();//переменная для класс стилей
-  //       style.lineStyle = new YMaps.LineStyle(); // Задаем стиль линии
-  //       style.lineStyle.strokeWidth = 5; // Ширина линии
-  //       style.lineStyle.strokeColor = '30405080' //цвет линии
-  //       router2.setStyle(style);//рименяем стиль к конкретному маршруту
-  //       map.addOverlay(router2);
-
-  //       // третья тчока
-  //       var router3 = new YMaps.Router(
-  //               [new YMaps.GeoPoint(37.61934642, 55.75089601), new YMaps.GeoPoint(37.81984691, 55.68422956)], [],
-  //               {viewAutoApply: true}
-  //       );
-  //       map.addOverlay(router3);
-
-
-  //   });
 });
 function send(){
 	var form = $('[data-form="send"]');
